@@ -7,12 +7,30 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ShareIcon from "@mui/icons-material/Share";
-import {CardContent, Checkbox } from "@mui/material";
+import { CardContent, Checkbox } from "@mui/material";
 import { Favorite, FavoriteBorder, MoreVert } from "@mui/icons-material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+
 
 function Post() {
+  useEffect(() => {
+    const getPostsData = () => {
+      axios
+        .get("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+        .then(res => console.log(res.data))
+        .catch(error => console.log(error));
+    };
+    getPostsData();
+  },[])
+
+
+
+
   return (
-    <Card sx={{margin:2}}>
+    <Card sx={{ margin: 2 }}>
+     
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

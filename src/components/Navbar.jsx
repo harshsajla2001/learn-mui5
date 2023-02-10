@@ -45,7 +45,6 @@ const UserBox = styled("Box")(({ theme }) => ({
 function Navbar() {
   const [open, setOpen] = useState(false);
   const { loginWithRedirect, logout, user, isAuthenticated, isLoading   } = useAuth0();
-  console.log(user)
   return (
     <AppBar position="sticky">
       <StyledToolbar>
