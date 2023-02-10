@@ -1,6 +1,7 @@
 import {
   AppBar,
   Avatar,
+  Divider,
   InputBase,
   Toolbar,
   Typography,
@@ -12,6 +13,7 @@ import PetsIcon from "@mui/icons-material/Pets";
 import Badge from "@mui/material/Badge";
 import { Mail, Notifications } from "@mui/icons-material";
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -42,6 +44,8 @@ const UserBox = styled("Box")(({ theme }) => ({
 }));
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const { loginWithRedirect, logout, user, isAuthenticated, isLoading   } = useAuth0();
+  console.log(user)
   return (
     <AppBar position="sticky">
       <StyledToolbar>
@@ -64,6 +68,9 @@ function Navbar() {
             src="https://cdn.pixabay.com/photo/2017/11/06/13/45/cap-2923682_960_720.jpg"
             onClick={ e => setOpen(true)}
           />
+          {isAuthenticated && 
+          <Typography>{user.nickname}</Typography>
+          }
         </Icons>
         <UserBox onClick={e => setOpen(true)}>
         <Avatar
@@ -92,8 +99,16 @@ function Navbar() {
         }}
       >
         <MenuItem >Profile</MenuItem>
+        <Divider sx={{ my: 0.5 }} />
         <MenuItem >My account</MenuItem>
-        <MenuItem >Logout</MenuItem>
+        <Divider sx={{ my: 0.5 }} />
+
+        {isAuthenticated ? (
+          <MenuItem onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Logout</MenuItem>
+        ) : (
+          <MenuItem onClick={() => loginWithRedirect()}>Login/Signup</MenuItem>
+        )} 
+        
       </Menu>
     </AppBar>
   );

@@ -18,7 +18,6 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import React from "react";
 
 function Sidebar({ mode, setMode }) {
-  console.log(mode);
 
   const handleChange = (e) => {
     if (e.target.checked) {
