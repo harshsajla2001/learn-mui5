@@ -17,7 +17,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import React from "react";
 
-function Sidebar({ mode, setMode }) {
+function Sidebar({ mode, setMode ,setSearchdrink,searchDrink, getDrinksBySearch}) {
 
   const handleChange = (e) => {
     if (e.target.checked) {
@@ -25,7 +25,10 @@ function Sidebar({ mode, setMode }) {
     } else {
       setMode("light");
     }
-  };
+  }; 
+  const handleClick =()=>{
+    getDrinksBySearch('s=margarita')
+  }
   return (
     <Box flex={1} p={2} sx={{ display: { xs: "none", sm: "block" } }}>
       <Box position="fixed">
@@ -39,11 +42,11 @@ function Sidebar({ mode, setMode }) {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#pages">
+            <ListItemButton component="Button" onClick={handleClick}>
               <ListItemIcon>
                 <ArticleIcon />
               </ListItemIcon>
-              <ListItemText primary="Pages" />
+              <ListItemText primary="Margrita" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
