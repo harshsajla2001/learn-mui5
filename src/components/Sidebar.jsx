@@ -7,17 +7,16 @@ import {
   ListItemText,
   Switch,
 } from "@mui/material";
-import ArticleIcon from "@mui/icons-material/Article";
-import GroupIcon from "@mui/icons-material/Group";
+import LocalBarIcon from '@mui/icons-material/LocalBar';
+import WineBarIcon from '@mui/icons-material/WineBar';
 import StorefrontIcon from "@mui/icons-material/Storefront";
-import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HomeIcon from "@mui/icons-material/Home";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import React from "react";
+import React, { useEffect } from "react";
 
-function Sidebar({ mode, setMode ,setSearchdrink,searchDrink, getDrinksBySearch}) {
+function Sidebar({ setMode, getDrinksBySearch }) {
 
   const handleChange = (e) => {
     if (e.target.checked) {
@@ -25,16 +24,26 @@ function Sidebar({ mode, setMode ,setSearchdrink,searchDrink, getDrinksBySearch}
     } else {
       setMode("light");
     }
-  }; 
-  const handleClick =()=>{
-    getDrinksBySearch('s=margarita')
+  };
+  const handleClickMargarita = () => {
+    getDrinksBySearch('search.php?s=margarita')
+  }
+  const handleClickVodka = () => {
+    getDrinksBySearch('search.php?s=vodka')
+  }
+  useEffect(() => {
+    getDrinksBySearch('random.php')
+  
+  }, [])
+  const handleClickHome = () => {
+    getDrinksBySearch('random.php')
   }
   return (
     <Box flex={1} p={2} sx={{ display: { xs: "none", sm: "block" } }}>
       <Box position="fixed">
         <List>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#home">
+            <ListItemButton component="button" onClick={handleClickHome}>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
@@ -42,19 +51,19 @@ function Sidebar({ mode, setMode ,setSearchdrink,searchDrink, getDrinksBySearch}
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="Button" onClick={handleClick}>
+            <ListItemButton component="button" onClick={handleClickMargarita}>
               <ListItemIcon>
-                <ArticleIcon />
+                <LocalBarIcon />
               </ListItemIcon>
               <ListItemText primary="Margrita" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#groups">
+            <ListItemButton component="button" onClick={handleClickVodka}>
               <ListItemIcon>
-                <GroupIcon />
+                <WineBarIcon />
               </ListItemIcon>
-              <ListItemText primary="Groups" />
+              <ListItemText primary="Vodka" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -65,14 +74,7 @@ function Sidebar({ mode, setMode ,setSearchdrink,searchDrink, getDrinksBySearch}
               <ListItemText primary="Marketplace" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#friend">
-              <ListItemIcon>
-                <PersonIcon />
-              </ListItemIcon>
-              <ListItemText primary="Friend" />
-            </ListItemButton>
-          </ListItem>
+
           <ListItem disablePadding>
             <ListItemButton component="a" href="#setting">
               <ListItemIcon>

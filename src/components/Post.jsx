@@ -40,11 +40,11 @@ function Post() {
   }, [])
 
   return (
-    <>
+    <Box flex={4} >
       {
         drink.map((drinks) => {
           const { idDrink, strDrink, strDrinkThumb, strInstructions, strAlcoholic, strGlass } = drinks
-          return <Card key={idDrink} flex={4} p={2} >
+          return <Card key={idDrink}  >
             <CardMedia
               component="img"
               alt="green iguana"
@@ -85,7 +85,7 @@ function Post() {
           </Card>
         })
       }
-    </>
+    </Box>
   );
 }
 

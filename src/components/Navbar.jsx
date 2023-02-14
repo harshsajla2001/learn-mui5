@@ -26,7 +26,7 @@ const Search = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   width: "40%",
 }));
-const Icons = styled("Box")(({ theme }) => ({
+const Icons = styled("box")(({ theme }) => ({
   display: "none",
   alignItems: "center",
   gap: "20px",
@@ -34,7 +34,7 @@ const Icons = styled("Box")(({ theme }) => ({
     display: "flex"
   }
 }));
-const UserBox = styled("Box")(({ theme }) => ({
+const Userbox = styled("box")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: "10px",
@@ -44,7 +44,7 @@ const UserBox = styled("Box")(({ theme }) => ({
 }));
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const { loginWithRedirect, logout, user, isAuthenticated, isLoading   } = useAuth0();
+  const { loginWithRedirect, logout, user, isAuthenticated   } = useAuth0();
   return (
     <AppBar position="sticky">
       <StyledToolbar>
@@ -71,7 +71,7 @@ function Navbar() {
           <Typography>{user.nickname}</Typography>
           }
         </Icons>
-        <UserBox onClick={e => setOpen(true)}>
+        <Userbox onClick={e => setOpen(true)}>
         <Avatar
             sx={{ width: "30px", height: "30px" }}
             src="https://cdn.pixabay.com/photo/2017/11/06/13/45/cap-2923682_960_720.jpg"
@@ -80,7 +80,7 @@ function Navbar() {
           <Typography variant="span">
             Harsh
           </Typography>
-        </UserBox>
+        </Userbox>
       </StyledToolbar>
       <Menu
         id="demo-positioned-menu"

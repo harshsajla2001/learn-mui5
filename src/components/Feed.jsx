@@ -1,12 +1,10 @@
-import { Button, CardActions, CardContent, CardMedia, Chip, IconButton, Typography } from "@mui/material";
+import { Box, Button, CardActions, CardContent, CardMedia, Chip, IconButton, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
-import axios from "axios";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Search } from "@mui/icons-material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -18,27 +16,23 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
-function Feed({searchDrink}) {
+function Feed({searchDrink, getDrinksBySearch  }){
+  // console.log(searchDrink," feed wala console ")
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   } 
-
-  
-
- 
-
   return (
-    <>
+    <Box flex={4} p={4}>
       {
-        searchDrink.map((searchDrink) => {
-          const { idDrink, strDrink, strDrinkThumb, strInstructions, strAlcoholic, strGlass } = searchDrink
+        searchDrink.map((searchDrinks) => {
+          const { idDrink, strDrink, strDrinkThumb, strInstructions, strAlcoholic, strGlass } = searchDrinks
           return <Card key={idDrink} >
             <CardMedia
               component="img"
               alt="green iguana"
-              height="500px"
+              sx={{maxHeight:"350px"}}
               image={strDrinkThumb}
             />
             <CardContent >
@@ -75,7 +69,7 @@ function Feed({searchDrink}) {
           </Card>
         })
       }
-    </>
+    </Box>
   );
 }
 
